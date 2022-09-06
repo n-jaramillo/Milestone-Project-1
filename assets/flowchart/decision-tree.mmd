@@ -66,6 +66,18 @@ end
             subgraph N3-1B [Narrative 3.1B Go Back Towards the Fence]
                 N3.1B(You consider reaching in the puddle for your phone but you become uneasy of the hypnotic swirling and decide to go back towards the fence.)
             end
+
+                %% Decide to go back through the fence or follow the footprints
+
+                    %% Fence Narrative
+                    
+                    %% Decide to go to the alley or go home
+
+                        %% Alley Path -> Darkness unlocked, just keep walking
+
+                        %% Go home narrative -> can't because Otis is still lost
+
+                %% Follow Footprints Path
 		
         %% Set of Footprints Path: Narrative
         subgraph N2-1B [Narrative 2.1B Set of Footprints]
@@ -83,6 +95,18 @@ end
                     N1.1Ai(After losing your phone and perhaps blindly following a goat, you decide to trace back the footprints that you know, your footprints.)
                 end
 
+                    %% Decide to go back through the fence or try retrieving the phone
+
+                        %% Fence Narrative
+                    
+                        %% Decide to go to the alley or go home
+
+                            %% Alley Path -> Darkness unlocked, just keep walking
+
+                            %% Go home narrative -> can't because Otis is still lost
+
+                        %% Retrieve Phone Path
+
                 %% Continue Footprints Path: Narrative
                 subgraph N3-2B [Narrative 3.2B Continue Following the Footprints]
                     N3.2B(You decide to continue following the hoofprints.)
@@ -98,6 +122,17 @@ end
         D2B(Alley way decision tree)
         === D2BD{1 or 0?}
 	end
+
+        %% Play in a Card Game Path: Narrative
+        %% Enter Special Card Game Mode (Terrible Odds, One chance to defeat, if win -> get Otis, else -> Negative Ending -> lay down and die
+
+        %% Lay Down and Die Path: Narrative
+        %% Negative Ending
+        %% Enter Special Card Game Mode (Terrible Odds, Dialog Changes Each Round, if certain amount of plays -> get sent back home with Otis and cat)
+
+            %% After Certain Amount of Plays Narrative
+            %% Positive Ending
+            %% Zen Mode
 
 
 %% Path: Narrative
