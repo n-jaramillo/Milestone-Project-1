@@ -68,6 +68,15 @@ end
                 === D3.1BD{Go back or continue?}
             end
 
+                %% Unlocked Dead End Path: Narrative
+                subgraph N1-1Ai [Narrative 1.1A Unlocked: Dead End]
+                    N1.1Ai(After losing your phone and perhaps blindly following a goat, you decide to trace back the footprints that you know, your footprints.)
+                end
+
+                subgraph N3-2B [Narrative 3.2B Continue Following the Footprints]
+                    N3.2B(You decide to continue following the hoofprints.)
+                end
+
 	%% Alley Way Path: Narrative, Devil
 	subgraph N1-1B [Narrative 1.1B Alley Way]
         N1.1B(It's getting dark, you decide to go through the alley way using your phone as a flashlight.)
@@ -88,7 +97,9 @@ Decision1 === N1-1B ---o Decision2B
 
 Decision2A === N2-1A ---o Decision3A -.- E3-1A
 Decision3A === N3-1B
-Decision2A === N2-1B ---o Decision3B
+Decision2A === N2-1B ---o Decision3B -.-> N1-1Ai
+N1-1A -.-> N1-1Ai
+Decision3B === N3-2B
 
 %% Styles
 classDef narrative fill: #fff0f0, color: thistle, stroke: mistyrose, stroke-width: 1px
@@ -104,7 +115,7 @@ classDef endPos fill: lightgreen, color: darkgreen, stroke: green, stroke-width:
 classDef decPoint fill: #ffcccc, stroke-width: 0px
 
 %% Apply Styles
-class NA,NB,NC,N1.1A,N1.1B,N2.1A,N2.1B,N3.1B narrative;
+class NA,NB,NC,N1.1A,N1.1B,N2.1A,N2.1B,N3.1B,N1.1Ai narrative;
 
 class DG,DA,D3.1A decisionCrit;
 
