@@ -7,14 +7,18 @@ subgraph Story [Start]
     Story1(It's Friday morning and your friend texts you asking if you'd like to come over for casino night. You have a lot of activities to catch up on <br>for your bootcamp, but figure that you could get it done after you hang out with your friend and make a little money as well.<br>You text your friend back saying you'll be over at six o'clock and they better be prepared to lose some money. You start to work on your activities <br>but quickly realize you have no understanding of callback functions and promises, you decide to take a break to get your backpack ready for game night.<br>You thought to yourself, there's Saturday to work on your comprehension of why you don't have to pay for a hamburger today when you can spare $3.50 on Tuesday<br> and think you might as well bring the heat to game night. You look around your room thinking of what you can bring. <br>You packed your bag quickly, making sure to bring along your lucky deck of cards, it's only 4 o'clock, so you have plenty of time before you have to leave.)  
 end
 
+%% Gameplay Decision (Adventure Mode or Zen Mode)
 subgraph Gameplay [Gameplay Decision]
     DG(Do you take a quick nap or head over to your friend's house early?)
     === DGD{Quick Nap or Head Over?}
 end
 
+%% Quick Nap Path: Narrative (Adventure Mode Gameplay)
 subgraph NarrativeA ["Initial Narrative (Quick Nap)"]
     NA(The weather seems nice today, but you decide to take a nap. You set your alarm for 5 o'clock, open your window, and get comfy while scrolling on your phone before dozing off into slumber.<br>The comfort didn't last long and you are startled awake by a loud noise outside, you take a look through your window and see that it's just some careless drivers with road rage.<br> You shut the window and notice the clock reads 4:45. You feel rested enough and decide to take your dog Otis on a quick walk before heading over to your friend's house. <br>Otis notices a feral cat walking by and starts chasing it. You try to hold him back but the leash wasn't clipped on all the way and he manages to free himself.<br>Otis starts to run off and you are panting trying to keep up but he gets further and further out of sight within minutes.)
 end 
+
+%% Head Over Early Path: Narrative (Zen Mode Gameplay)
 subgraph NarrativeB ["Zen Mode Narrative (Head Over)"]
     NB(You decide to drive your dog Otis to the park for a quick outdoor play before heading over to your friend's house.<br>You double check your bag and make sure your lucky cards packed and you enjoy a lovely walk to your friend's house,<br>hopeful that you'll make some extra cash for the holiday weekend.) -.- EB{{Zen Mode Game Play}}
 end
@@ -41,7 +45,6 @@ end
 		subgraph N2-1A [Narrative 2.1A Strange Puddle]
 		    N2.1A(You pull out your phone flashlight to investigate the puddle.<br>You notice the puddle is swirling slowly and looks eerily like blood.<br>You lean in to take a closer look. A crow squawks in the distance, startling you and making you lose your balance,<br>you drop your phone in the sanguine pool. As your phone gets sucked into the vortex you nervously<br>wonder if the puddle is swirling because the wind is picking up or because it really isn't a puddle.)
 		end
-		%%  
 
             %% Strange Puddle Path: Decision
             subgraph Decision3A [Decision 3A]
@@ -54,10 +57,12 @@ end
                 S1(State Tracking: Lost Phone)
             end
 
+            %% Retrieve Phone Path: Ending (Negative)
             subgraph E3-1A [Negative Ending Retrieve Your Phone]
                 E3.1A{{You decide that your phone has too much on it to let it go so you quickly thrust your hand into the vortex and<br>feel that it's not only sticky but it's also burning hot and not as shallow as you thought.<br>You try to pull your hand out but the more you resist the hotter it burns. You relax and the heat dissipates.<br>You slowly move your hand around trying to locate your phone. You brush up against something.<br>Thinking it could be your phone you grit your teeth and start moving your hand fast towards the object.<br>The burning becomes so hot that you feel a stabbing pain in your fingers.<br>You quickly realize it's not the pain that's stabbing you but something is clenching down biting your hand and you get wrenched into the mass further.<br>You jolt upright, startled awake by a loud noise outside, you take a look through your window and see that it's just some careless drivers with road rage.<br>You shut the window and notice the clock reads 4:45 and your phone on the bed with an opened text from your friend.<br>Curious you check and it's a video of the feral cat Otis was chasing in your dream.<br>Deciding not to chance fate, you cancel game night to continue working on your asynchronous coding activites.<br>However, the procrastinator in you takes over and you spend most of the night playing online rummy with an AI.}} -.- E3.1AB{{Zen Mode Game Play}}
             end
 
+            %% Go Back Towards Fence Path: Narrative
             subgraph N3-1B [Narrative 3.1B Go Back Towards the Fence]
                 N3.1B(You consider reaching in the puddle for your phone but you become uneasy of the hypnotic swirling and decide to go back towards the fence.)
             end
@@ -78,6 +83,7 @@ end
                     N1.1Ai(After losing your phone and perhaps blindly following a goat, you decide to trace back the footprints that you know, your footprints.)
                 end
 
+                %% Continue Footprints Path: Narrative
                 subgraph N3-2B [Narrative 3.2B Continue Following the Footprints]
                     N3.2B(You decide to continue following the hoofprints.)
                 end
@@ -95,46 +101,46 @@ end
 
 
 %% Path: Narrative
-Story ---o Gameplay === NarrativeA --o Decision1
-Gameplay === NarrativeB
-Decision1 === N1-1A ---o Decision2A
-Decision1 === N1-1B ---o Decision2B
+    Story ---o Gameplay === NarrativeA --o Decision1
+    Gameplay === NarrativeB
+    Decision1 === N1-1A ---o Decision2A
+    Decision1 === N1-1B ---o Decision2B
 
-Decision2A === N2-1A ---o Decision3A -.- E3-1A
-Decision3A === N3-1B
-Decision2A === N2-1B ---o Decision3B -.-> N1-1Ai
-N1-1A -.-> N1-1Ai
-Decision3B === N3-2B
+    Decision2A === N2-1A ---o Decision3A -.- E3-1A
+    Decision3A === N3-1B
+    Decision2A === N2-1B ---o Decision3B -.-> N1-1Ai
+    N1-1A -.-> N1-1Ai
+    Decision3B === N3-2B
 
 %% State Tracking
-N2.1A --x State1
+    N2.1A --x State1
 
 %% Styles
-classDef narrative fill: #fff0f0, color: thistle, stroke: mistyrose, stroke-width: 1px
+    classDef narrative fill: #fff0f0, color: thistle, stroke: mistyrose, stroke-width: 1px
 
-classDef decisionCrit fill: snow, color: crimson, stroke: crimson, stroke-width: 3px, stroke-dasharray:  5 5
+    classDef decisionCrit fill: snow, color: crimson, stroke: crimson, stroke-width: 3px, stroke-dasharray:  5 5
 
-classDef decision fill: mistyrose, color: rosybrown, stroke: rosybrown, stroke-width: 1px, stroke-dasharray:  5 5
+    classDef decision fill: mistyrose, color: rosybrown, stroke: rosybrown, stroke-width: 1px, stroke-dasharray:  5 5
 
-classDef endNeg fill: lightcoral, color: darkred, stroke: darkred, stroke-width: 1px
+    classDef endNeg fill: lightcoral, color: darkred, stroke: darkred, stroke-width: 1px
 
-classDef endPos fill: lightgreen, color: darkgreen, stroke: green, stroke-width: 1px
+    classDef endPos fill: lightgreen, color: darkgreen, stroke: green, stroke-width: 1px
 
-classDef decPoint fill: #ffcccc, stroke-width: 0px
+    classDef decPoint fill: #ffcccc, stroke-width: 0px
 
-classDef stateTrack fill: white, stroke: red, stroke-width: 2px
+    classDef stateTrack fill: white, stroke: red, stroke-width: 2px
 
 %% Apply Styles
-class NA,NB,NC,N1.1A,N1.1B,N2.1A,N2.1B,N3.1B,N1.1Ai narrative;
+    class NA,NB,NC,N1.1A,N1.1B,N2.1A,N2.1B,N3.1B,N1.1Ai narrative;
 
-class DG,DA,D3.1A decisionCrit;
+    class DG,DA,D3.1A decisionCrit;
 
-class D1,D2A,D2B,D3.1B decision;
+    class D1,D2A,D2B,D3.1B decision;
 
-class DGD,D1D,D2AD,D2BD,D3.1AD,D3.1BD decPoint;
+    class DGD,D1D,D2AD,D2BD,D3.1AD,D3.1BD decPoint;
 
-class E3B,E3.1A endNeg;
+    class E3B,E3.1A endNeg;
 
-class E2B,E3A endPos;
+    class E2B,E3A endPos;
 
-class S1 stateTrack;
+    class S1 stateTrack;
