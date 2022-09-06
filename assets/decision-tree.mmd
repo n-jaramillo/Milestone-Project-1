@@ -4,13 +4,23 @@ flowchart TD
 %% Story Beginning
 subgraph Story [Start]
 direction TB
-    S1(It's Friday morning and your friend texts you asking if you'd like to come over for casino night. You have a lot of activities to catch up on <br>for your bootcamp, but figure that you could get it done after you hang out with your friend and make a little money as well.<br>You text your friend back saying you'll be over at six o'clock and they better be prepared to lose some money. You start to work on your activities <br>but quickly realize you have no understanding of callback functions and promises, you decide to take a break to get your backpack ready for game night.<br>You thought to yourself, there's Saturday to work on your comprehension of why you don't have to pay for a hamburger today when you can spare $3.50 on Tuesday<br> and think you might as well bring the heat to game night. You look around your room thinking what you can bring. <br>You packed your bag quickly, making sure to bring along your lucky deck of cards, it's only 4 o'clock, so you have plenty of time before you have to leave. <br><br>)
-    --o DA(Do you take a quick nap or head over to your friend's house early?)
-    --> NA(The weather seems nice today, but you decide to take a nap. You set your alarm for 5 o'clock, open your window, and get comfy.<br>The comfort didn't last long and you are startled awake by a loud noise outside, you take a look through your window and see that it's just some careless drivers with road rage.<br> You shut the window and notice the clock reads 4:45 and you feel rested enough so you decide to take your dog Otis on a quick walk before heading over to your friend's house. <br>Otis notices a feral cat walking by and starts chasing it. You try to hold him back but the leash wasn't clipped on all the way and he manages to free himself<br>Otis starts to run off and you are panting trying to keep up but he gets further and further out of sight within minutes<br><br>)
+    S1(It's Friday morning and your friend texts you asking if you'd like to come over for casino night. You have a lot of activities to catch up on <br>for your bootcamp, but figure that you could get it done after you hang out with your friend and make a little money as well.<br>You text your friend back saying you'll be over at six o'clock and they better be prepared to lose some money. You start to work on your activities <br>but quickly realize you have no understanding of callback functions and promises, you decide to take a break to get your backpack ready for game night.<br>You thought to yourself, there's Saturday to work on your comprehension of why you don't have to pay for a hamburger today when you can spare $3.50 on Tuesday<br> and think you might as well bring the heat to game night. You look around your room thinking what you can bring. <br>You packed your bag quickly, making sure to bring along your lucky deck of cards, it's only 4 o'clock, so you have plenty of time before you have to leave. <br><br>)  
+end
+
+subgraph Gameplay [Gameplay Decision 1]
+    D1(Do you take a quick nap or head over to your friend's house early?)
+    === D1D(Quick Nap or Head Over?)    
+end
+
+subgraph Narrative1A [Initial Narrative]
+    NA(The weather seems nice today, but you decide to take a nap. You set your alarm for 5 o'clock, open your window, and get comfy.<br>The comfort didn't last long and you are startled awake by a loud noise outside, you take a look through your window and see that it's just some careless drivers with road rage.<br> You shut the window and notice the clock reads 4:45 and you feel rested enough so you decide to take your dog Otis on a quick walk before heading over to your friend's house. <br>Otis notices a feral cat walking by and starts chasing it. You try to hold him back but the leash wasn't clipped on all the way and he manages to free himself<br>Otis starts to run off and you are panting trying to keep up but he gets further and further out of sight within minutes<br><br>)
+end 
+subgraph Narrative1B [Zen Mode Narrative]
+    NB(You decide to drive your dog Otis to the park for a quick outdoor play before heading over to your friend's house.<br>You double check your bag and make sure your lucky cards packed and you enjoy a lovely walk to your friend's house,<br>hopeful that you'll make some extra money for the holiday weekend.) -.- EA{{Zen Mode Game Play}}
 end
 
 %% Decision One: Dead End or Alley Way?
-subgraph D1-1 [Decision 1]
+subgraph D1-1 [Decision 1.1]
 direction TB
     D1.1(1.1 You arrive at an intersection, one way leads to a dead end with a broken chainlink fence, the other leads to a dark alley way)
     ===
@@ -69,7 +79,8 @@ end
 
 
 %% Path: Narrative
-Story ---o D1-1
+Story ---o Gameplay === Narrative1A --o D1-1
+Gameplay === Narrative1B
 D1-1 === N1-2A ---o D1-2A
 D1-2A === N2-1A ---o D2-1A -.- E3-1A
 D1-1 === N1-2B ---o D1-2B 
@@ -90,13 +101,13 @@ classDef decPoint fill: #ffcccc, stroke-width: 0px
 %% Apply Styles
 class NA,NB,NC,N1.2A,N1.2B,N2.1A narrative;
 
-class DA,D3.1A decisionCrit;
+class D1,DA,D3.1A decisionCrit;
 
-class D1,D1.1,D2.1A decision;
+class D1.1,D2.1A decision;
 
-class D1.1D,D2.1AD,D3.1AD decPoint;
+class D1D,D1.1D,D2.1AD,D3.1AD decPoint;
 
 class E3B,E3.1A endNeg;
 
-class E2B,E3A endPos;
+class EA,E2B,E3A endPos;
 
