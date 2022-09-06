@@ -4,7 +4,7 @@ flowchart TD
 %% Story Beginning
 subgraph Story [Start]
     direction TB
-    S(It's Friday morning and your friend texts you asking if you'd like to come over for casino night. You have a lot of activities to catch up on <br>for your bootcamp, but figure that you could get it done after you hang out with your friend and make a little money as well.<br>You text your friend back saying you'll be over at six o'clock and they better be prepared to lose some money. You start to work on your activities <br>but quickly realize you have no understanding of callback functions and promises, you decide to take a break to get your backpack ready for game night.<br>You thought to yourself, there's Saturday to work on your comprehension of why you don't have to pay for a hamburger today when you can spare $3.50 on Tuesday<br> and think you might as well bring the heat to game night. You look around your room thinking of what you can bring. <br>You packed your bag quickly, making sure to bring along your lucky deck of cards, it's only 4 o'clock, so you have plenty of time before you have to leave.)  
+    Story1(It's Friday morning and your friend texts you asking if you'd like to come over for casino night. You have a lot of activities to catch up on <br>for your bootcamp, but figure that you could get it done after you hang out with your friend and make a little money as well.<br>You text your friend back saying you'll be over at six o'clock and they better be prepared to lose some money. You start to work on your activities <br>but quickly realize you have no understanding of callback functions and promises, you decide to take a break to get your backpack ready for game night.<br>You thought to yourself, there's Saturday to work on your comprehension of why you don't have to pay for a hamburger today when you can spare $3.50 on Tuesday<br> and think you might as well bring the heat to game night. You look around your room thinking of what you can bring. <br>You packed your bag quickly, making sure to bring along your lucky deck of cards, it's only 4 o'clock, so you have plenty of time before you have to leave.)  
 end
 
 subgraph Gameplay [Gameplay Decision]
@@ -47,6 +47,11 @@ end
             subgraph Decision3A [Decision 3A]
                 D3.1A(Do you try to reaching into the mass to get your phone out or do you go back towards the fence?)
                 === D3.1AD{Retrieve your phone or go back?}
+            end
+
+            %% State Tracking: Lost Phone
+            subgraph State1 [Lost Phone]
+                S1(State Tracking: Lost Phone)
             end
 
             subgraph E3-1A [Negative Ending Retrieve Your Phone]
@@ -101,6 +106,9 @@ Decision2A === N2-1B ---o Decision3B -.-> N1-1Ai
 N1-1A -.-> N1-1Ai
 Decision3B === N3-2B
 
+%% State Tracking
+N2.1A --x State1
+
 %% Styles
 classDef narrative fill: #fff0f0, color: thistle, stroke: mistyrose, stroke-width: 1px
 
@@ -113,6 +121,8 @@ classDef endNeg fill: lightcoral, color: darkred, stroke: darkred, stroke-width:
 classDef endPos fill: lightgreen, color: darkgreen, stroke: green, stroke-width: 1px
 
 classDef decPoint fill: #ffcccc, stroke-width: 0px
+
+classDef stateTrack fill: white, stroke: red, stroke-width: 2px
 
 %% Apply Styles
 class NA,NB,NC,N1.1A,N1.1B,N2.1A,N2.1B,N3.1B,N1.1Ai narrative;
@@ -127,3 +137,4 @@ class E3B,E3.1A endNeg;
 
 class E2B,E3A endPos;
 
+class S1 stateTrack;
