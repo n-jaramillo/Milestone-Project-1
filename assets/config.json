@@ -1,0 +1,15 @@
+{
+    "theme": "base", 
+    "themeVariables" : 
+    {
+        "primaryTextColor": "grey",
+        "tertiaryColor": "snow",
+        "tertiaryTextColor": "grey",
+        "lineColor": "grey",
+        "edgeLabelBackground":"#ffcccc",
+        "fontSize": "8"
+    },
+    "flowchart" : {
+        "curve": "basis"
+    }
+}
