@@ -1,0 +1,88 @@
+flowchart TD
+%%{init: {'theme': 'base', 'themeVariables' : {'primaryTextColor': 'grey', 'tertiaryColor': 'snow', 'tertiaryTextColor': 'grey', 'lineColor': 'grey', 'edgeLabelBackground':'#ffcccc', 'fontSize': '8'}, 'flowchart' : {'curve': 'basis'} } }%%
+%% Story Beginning
+subgraph Story [Start]
+direction TB
+		S1(It's Friday morning and your friend texts you asking if you'd like to come over for casino night. You have a lot of activities to catch up on <br>for your bootcamp, but figure that you could get it done after you hang out with your friend and make a little money as well.<br>You text your friend back saying you'll be over at six o'clock and they better be prepared to lose some money. You start to work on your activities <br>but quickly realize you have no understanding of callback functions and promises, you decide to take a break to get your backpack ready for game night.<br>You thought to yourself, there's Saturday to work on your comprehension of why you don't have to pay for a hamburger today when you can spare $3.50 on Tuesday<br> and think you might as well bring the heat to game night. You look around your room thinking what you can bring. <br>You packed your bag quickly, making sure to bring along your lucky deck of cards, it's only 4 o'clock, so you have plenty of time before you have to leave. <br><br>)
+		--o DA(Do you take a quick nap or head over to your friend's house early?)
+    --> NA(The weather seems nice today, but you decide to take a nap. You set your alarm for 5 o'clock, open your window, and get comfy.<br>The comfort didn't last long and you are startled awake by a loud noise outside, you take a look through your window and see that it's just some careless drivers with road rage.<br> You shut the window and notice the clock reads 4:45 and you feel rested enough so you decide to take your dog Otis on a quick walk before heading over to your friend's house. <br>Otis notices a feral cat walking by and starts chasing it. You try to hold him back but the leash wasn't clipped on all the way and he manages to free himself<br>Otis starts to run off and you are panting trying to keep up but he gets further and further out of sight within minutes<br><br>)
+end
+
+%% Decision One: Dead End or Alley Way?
+subgraph D1-1 [Decision 1]
+direction TB
+    D1.1(1.1 You arrive at an intersection, one way leads to a dead end with a broken chainlink fence, the other leads to a dark alley way)
+    ===
+    D1.1D(Dead End or Alley Way?)
+end
+
+	%% Dead End Path: Narrative
+	subgraph N1-2A [Narrative 1.2A Dead End]
+	direction LR
+	N1.2A(You decide to go towards the dead end in hopes that Otis is on the other side.<br>You squeeze through the opening of the fence.<br>As you go through you feel resistance and see your jeans have gotten caught on the fence.<br>You tug and tear your jeans which results in you falling and scraping your elbows.<br>As you're dusting yourself off and checking the rip on your jeans,<br> you notice a large, sticky puddle on the ground and in the distance, a set of footprints<br><br>)
+	end 
+	
+	%% Dead End Path: Decision Two A: Strange Puddle or Set of Footprints?
+	subgraph D1-2A [Decision 2A]
+		D2.1A(2.1A Do you investigate the strange puddle or the set of footprints?)
+		=== D2.1AD(Strange Puddle or Set of Footprints?)
+	end
+	
+		%% Strange Puddle Path: Narrative
+		subgraph N2-1A [Narrative 2.1A Strange Puddle]
+		N2.1A(You pull out your phone flashlight to investigate the puddle.<br>You notice the puddle is swirling slowly and looks eerily like blood.<br>You lean in to take a closer look. A crow squawks in the distance, startling you and making you lose your balance,<br>you drop your phone in the sanguine pool. As your phone gets sucked into the vortex you nervously<br>wonder if the puddle is swirling because the wind is picking up or because it really isn't a puddle.<br><br>)
+		end
+		%%  
+
+		%% Strange Puddle Path: Decision
+		subgraph D2-1A [Decision 3A]
+			D3.1A(3.1A Do you try to reaching into the mass to get your phone out or do you go back towards the fence?)
+			=== D3.1AD(Retrieve your phone or go back?)
+		end
+		%% 
+
+		%% You consider reaching in the puddle for your phone but you become uneasy of the hypnotic swirling and decide to go back towards the fence.
+
+		subgraph E3-1A [Negative Ending 3A]
+			E3.1A{{You decide that your phone has too much on it to let it go so you quickly thrust your hand into the vortex and<br>feel that it's not only sticky but it's also burning hot and not as shallow as you thought.<br>You try to pull your hand out but the more you resist the hotter it burns. You relax and the heat dissipates.<br>You slowly move your hand around trying to locate your phone. You brush up against something.<br>Thinking it could be your phone you grit your teeth and start moving your hand fast towards the object.<br>The burning becomes so hot that you feel a stabbing pain in your fingers.<br>You quickly realize it's not the pain that's stabbing you but something is clenching down biting your hand and you get wrenched into the mass further.<br><br>}}
+		end
+
+		%% Set of Footprints Path: Narrative
+		%% As your following the set of footprints you notice that the boot pattern is changing. Each print seems to gradually split down the middle and gets more pointed towards the toe. You look back and surprised, you see that you haven't been following boot prints but what looks to be like hoof prints. 
+		
+		%% Set of Footprints Path: Decision
+		%% Confused, you wonder if you should head back or continue towards where the prints lead.
+		%% Go back or continue?
+	
+
+
+
+	%% Alley Way Path: Narrative, Devil
+	subgraph N1-2B [Narrative 1.2B Alley Way]
+	N1.2B(It's getting dark, you decide to go through the alley way using your phone as a flashlight.)
+	end 
+	
+	%% Alley Way Path: Decision Two B: Play in a Card Game or Lay Down and Die 
+	subgraph D1-2B [Decision 2B]
+	end
+
+	%% Path: Narrative
+	%% Path: Narrative
+
+Story ---o D1-1
+D1-1 === N1-2A ---o D1-2A
+D1-2A === N2-1A ---o D2-1A -.- E3-1A
+D1-1 === N1-2B ---o D1-2B 
+
+classDef narrative fill: #fff0f0, color: thistle, stroke: mistyrose, stroke-width: 1px
+classDef decisionCrit fill: snow, color: crimson, stroke: crimson, stroke-width: 3px, stroke-dasharray:  5 5
+classDef decision fill: mistyrose, color: rosybrown, stroke: rosybrown, stroke-width: 1px, stroke-dasharray:  5 5
+classDef endNeg fill: lightcoral, color: darkred, stroke: darkred, stroke-width: 1px
+classDef endPos fill: lightgreen, color: darkgreen, stroke: green, stroke-width: 1px
+classDef decPoint fill: #ffcccc, stroke-width: 0px
+class NA,NB,NC,N1.2A,N1.2B,N2.1A narrative;
+class DA,D3.1A decisionCrit;
+class D1,D1.1,D2.1A decision;
+class E3B,E3.1A endNeg;
+class E2B,E3A endPos;
+class D1.1D,D2.1AD,D3.1AD decPoint;
