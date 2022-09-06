@@ -1,5 +1,6 @@
 flowchart TD
 %% @config(./config.json)
+
 %% Story Beginning
 subgraph Story [Start]
 direction TB
@@ -19,7 +20,7 @@ end
 	%% Dead End Path: Narrative
 	subgraph N1-2A [Narrative 1.2A Dead End]
 	direction LR
-	N1.2A(You decide to go towards the dead end in hopes that Otis is on the other side.<br>You squeeze through the opening of the fence.<br>As you go through you feel resistance and see your jeans have gotten caught on the fence.<br>You tug and tear your jeans which results in you falling and scraping your elbows.<br>As you're dusting yourself off and checking the rip on your jeans,<br> you notice a large, sticky puddle on the ground and in the distance, a set of footprints<br><br>)
+        N1.2A(You decide to go towards the dead end in hopes that Otis is on the other side.<br>You squeeze through the opening of the fence.<br>As you go through you feel resistance and see your jeans have gotten caught on the fence.<br>You tug and tear your jeans which results in you falling and scraping your elbows.<br>As you're dusting yourself off and checking the rip on your jeans,<br> you notice a large, sticky puddle on the ground and in the distance, a set of footprints<br><br>)
 	end 
 	
 	%% Dead End Path: Decision Two A: Strange Puddle or Set of Footprints?
@@ -66,23 +67,36 @@ end
 	subgraph D1-2B [Decision 2B]
 	end
 
-	%% Path: Narrative
-	%% Path: Narrative
 
+%% Path: Narrative
 Story ---o D1-1
 D1-1 === N1-2A ---o D1-2A
 D1-2A === N2-1A ---o D2-1A -.- E3-1A
 D1-1 === N1-2B ---o D1-2B 
 
+%% Styles
 classDef narrative fill: #fff0f0, color: thistle, stroke: mistyrose, stroke-width: 1px
+
 classDef decisionCrit fill: snow, color: crimson, stroke: crimson, stroke-width: 3px, stroke-dasharray:  5 5
+
 classDef decision fill: mistyrose, color: rosybrown, stroke: rosybrown, stroke-width: 1px, stroke-dasharray:  5 5
+
 classDef endNeg fill: lightcoral, color: darkred, stroke: darkred, stroke-width: 1px
+
 classDef endPos fill: lightgreen, color: darkgreen, stroke: green, stroke-width: 1px
+
 classDef decPoint fill: #ffcccc, stroke-width: 0px
+
+%% Apply Styles
 class NA,NB,NC,N1.2A,N1.2B,N2.1A narrative;
+
 class DA,D3.1A decisionCrit;
+
 class D1,D1.1,D2.1A decision;
-class E3B,E3.1A endNeg;
-class E2B,E3A endPos;
+
 class D1.1D,D2.1AD,D3.1AD decPoint;
+
+class E3B,E3.1A endNeg;
+
+class E2B,E3A endPos;
+
