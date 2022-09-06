@@ -49,11 +49,13 @@ end
                 === D3.1AD{Retrieve your phone or go back?}
             end
 
-            subgraph E3-1A [Negative Ending]
+            subgraph E3-1A [Negative Ending Retrieve Your Phone]
                 E3.1A{{You decide that your phone has too much on it to let it go so you quickly thrust your hand into the vortex and<br>feel that it's not only sticky but it's also burning hot and not as shallow as you thought.<br>You try to pull your hand out but the more you resist the hotter it burns. You relax and the heat dissipates.<br>You slowly move your hand around trying to locate your phone. You brush up against something.<br>Thinking it could be your phone you grit your teeth and start moving your hand fast towards the object.<br>The burning becomes so hot that you feel a stabbing pain in your fingers.<br>You quickly realize it's not the pain that's stabbing you but something is clenching down biting your hand and you get wrenched into the mass further.<br>You jolt upright, startled awake by a loud noise outside, you take a look through your window and see that it's just some careless drivers with road rage.<br>You shut the window and notice the clock reads 4:45 and your phone on the bed with an opened text from your friend.<br>Curious you check and it's a video of the feral cat Otis was chasing in your dream.<br>Deciding not to chance fate, you cancel game night to continue working on your asynchronous coding activites.<br>However, the procrastinator in you takes over and you spend most of the night playing online rummy with an AI.}} -.- E3.1AB{{Zen Mode Game Play}}
             end
 
-            %% You consider reaching in the puddle for your phone but you become uneasy of the hypnotic swirling and decide to go back towards the fence.   
+            subgraph N3-1B [Narrative 3.1B Go Back Towards the Fence]
+                N3.1B(You consider reaching in the puddle for your phone but you become uneasy of the hypnotic swirling and decide to go back towards the fence.)
+            end
 		
         %% Set of Footprints Path: Narrative
         subgraph N2-1B [Narrative 2.1B Set of Footprints]
@@ -85,6 +87,7 @@ Decision1 === N1-1A ---o Decision2A
 Decision1 === N1-1B ---o Decision2B
 
 Decision2A === N2-1A ---o Decision3A -.- E3-1A
+Decision3A === N3-1B
 Decision2A === N2-1B ---o Decision3B
 
 %% Styles
@@ -101,7 +104,7 @@ classDef endPos fill: lightgreen, color: darkgreen, stroke: green, stroke-width:
 classDef decPoint fill: #ffcccc, stroke-width: 0px
 
 %% Apply Styles
-class NA,NB,NC,N1.1A,N1.1B,N2.1A,N2.1B narrative;
+class NA,NB,NC,N1.1A,N1.1B,N2.1A,N2.1B,N3.1B narrative;
 
 class DG,DA,D3.1A decisionCrit;
 
