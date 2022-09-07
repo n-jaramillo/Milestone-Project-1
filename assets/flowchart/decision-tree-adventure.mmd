@@ -1,0 +1,162 @@
+flowchart TD
+%% @config(./config.json)
+
+%% Start of Story (? Nap or Go Early)
+S[Story] --o D1{Nap or Go Early}
+
+%% Decision: Go Early [Ending]
+%% Zen Mode Gameplay Unlocked (Boolean: True)
+%% Neutral Ending
+D1 == Go Early === N1B(Go Early Narrative) -. Play Cards with Friend .- E1[/Zen Mode Gameplay\]
+
+%% Decision: Nap (Path)
+D1 == Nap === N1A(Nap Narrative)
+
+	%% (? Dead End or Alley)
+	N1A --o D2{Dead End or Alley?}
+
+	%% Decision: Dead End (Path)
+	D2 == Dead End === N1.2A(Dead End Narrative)
+
+		%% (? Strange Puddle or Footprints?)
+		N1.2A --o D2.1A{<mark>Decision 2.1A</mark><br>Strange Puddle or Footprints?}
+
+		%% Decision: Strange Puddle (Path)
+		%% Lost Phone (Boolean: True)
+		D2.1A == Strange Puddle === N2.1A(Strange Puddle Narrative)
+
+			%% (? Retrieve Phone or Go Back)
+			N2.1A --o D3.1A{Retrieve Phone or Go Back?}
+
+			%% Decision: Retrieve Phone [Ending]
+			%% Neutral - Negative Ending
+			%% Zen Mode Gameplay Unlock (Boolean: True)
+			D3.1A == Retrieve Phone === N3.1A(Retrieve Phone Narrative)
+			N3.1A-.- E4{{Wake Up From Nightmare}} -. Play Cards with AI .- E4A[/Zen Mode Gameplay\]
+
+			%% Decision: Go Back (Path)
+			D3.1A == Go Back === N3.2A(Go Back Narrative) -.- ST4sm>Woods = True]
+			-.-o D2.1Ai{Strange Puddle or Footprints<br>Alternate Decision}
+			N3.2A --o Db{<mark>Decision 2.1A</mark>}
+			Phone -.- N2.2Ai(Footprints Alternative Narrative) -.-o D3.1Bi{Footprints or Go Back Through Fence}
+			D3.1Bi -.Go Back Through Fence.-o D2i{Alley or Home?}
+			D2i == Alley === Na(<mark>Narrative 1.2Bi</mark><br>Alternative Alley Narrative)
+			Na -.-o D2.1Bi{Play Cards or Take Milo?} -. Play Cards .- N2.1Bi(<mark>Narrative N2.1B</mark>)
+			D2.1Bi -. Take Milo .- E3Ai{{Take Milo Home Ending}}
+			D2i -. Go Home .- E2i{{Go Home Ending}}
+
+		%% Decision: Footprints (Path)
+		%% Something in the Woods (Boolean: True)
+		D2.1A == Footprints === N2.2A(Footprints Narrative)
+
+			%% (? Continue Following Footprints or Go Back?)
+			N2.2A --o D3.1B{Continue or Go Back?}
+
+			%% Decision: Continue Following Footprints
+			D3.1B == Continue === N3.1B(Continue Narrative)
+
+			%% Decision: Go Back
+			D3.1B == Go Back === N3.2B(Go Back Narrative) --o Da{<mark>Decision 2.1A</mark>}
+
+			%% (? Retrieve Phone or Look for Crow)
+			Footprints -.- N2.1Ai(Strange Puddle Alternative Narrative) -.-o D3.1Ai{Retrieve Phone or Look for Crow}
+
+				%% Decision: Retrieve Phone
+				%% Narrative (? Look for Crow or Go Back Through Fence)
+					%% Decision: Look for Crow
+					%% Decision: Go Back Through Fence
+
+				%% Decision: Look for Crow
+				%% Narrative -> (? Go Back or Knock on Door)
+
+	%% Decision: Alley (Path)
+	D2 == Alley === N1.2B(<mark>Narrative 1.2B</mark><br>Alley Narrative)
+
+		%% (? Play Cards or Lay Down and Die)
+		N1.2B --o D2.1B{Play Cards or Lay Down and Die?}
+
+		%% Decision: Play Cards
+		%% Hard Mode Gameplay Unlocked (Boolean: True)
+		D2.1B == Play Cards === N2.1B(<mark>Narrative N2.1B</mark><br>Play Cards Narrative) 
+			-.- E2A[\Special Game Mode/] -. Guaranteed Loss .- N2.2B
+
+		%% Decision: Lay Down and Die
+		D2.1B == Lay Down and Die === N2.2B(Lay Down and Die Narrative) -.- E2B
+
+			%% Hard Mode Gameplay Unlocked (Boolean: True)
+			E2B[\Special Game Mode/]
+
+			%% Positive Ending 
+			%% Milo Unlocked (Boolean: True)
+			%% Otis Unlocked (Boolean: True)
+			E2B -. Unlock Special Ending After X # of Plays .- E3A{{Go Back Home with Milo and Otis Ending}}
+			
+			%% Negative Ending
+			%% Otis (Boolean: False)
+			E2B -. Exit Before X # of Plays .- E3B{{Rot in Hell Ending}}
+
+%% State Trackers
+
+%% Zen Mode Gameplay Unlock
+subgraph ZenA [State Tracker]
+	ST6a>Zen Mode: True]
+end
+subgraph ZenB [State Tracker]
+	ST6b>Zen Mode: True]
+end
+ZenA -.-> N1B
+N3.1A -.-> ZenB
+
+subgraph DeadEnd [State Tracker]
+	ST5>Lost Phone + Something in the Woods = Dead End = True]
+end
+D2 -.-> DeadEnd
+
+%% Lost Phone Path Unlock
+subgraph Phone [State Tracker]
+	ST3>Lost Phone: True]
+end
+N2.1A -.-> Phone 
+
+%% Followed Footprints Unlock
+subgraph Footprints [State Tracker]
+	ST4>Something in the Woods: True]
+end
+N2.2A -.-> Footprints
+
+%% Take Milo Home & Lose Otis to the Devil Unlock
+subgraph Milo [State Tracker]
+	direction LR
+	ST2ai>Milo: True]
+	ST2bi>Otis: False]
+end
+E3Ai -.-> Milo
+
+%% Lose Otis
+subgraph OtisA [State Tracker]
+	ST7a>Otis: False]
+end
+subgraph OtisB [State Tracker]
+	ST7b>Otis: False]
+end
+
+E2i -.-> OtisA
+E3B -.-> OtisB
+
+%% Take Milo & Otis Home Unlock
+subgraph Pets+ [State Tracker]
+	direction LR
+	ST2a>Milo: True]
+	STb>Otis: True]
+end
+E3A -.-> Pets+
+
+%% Hard Mode Gameplay Unlock
+subgraph SpecialA [State Tracker]
+	ST1a>Hard Mode: True]
+end
+subgraph SpecialB [State Tracker]
+	ST1b>Hard Mode: True]
+end
+D2.1B -.-> SpecialA
+N2.1Bi -.-> SpecialB
