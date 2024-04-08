@@ -7,14 +7,14 @@
 }
 
 :root {
-    --background:#05020D;
-    --primary:#2F2A3D;
-    --secondary:#39263A;
-    --tertiary:#525638;
-    --accent:#635A7C;
-    --hightlight:#B4AC7D;
-    --text:#DEC9E0;
-    --hover-text:#595439;
+    --background: #05020D;
+    --primary: #2F2A3D;
+    --secondary: #39263A;
+    --tertiary: #525638;
+    --accent: #635A7C;
+    --hightlight: #B4AC7D;
+    --text: #DEC9E0;
+    --hover-text: #595439;
 }
 
 body {
@@ -32,35 +32,35 @@ body {
     padding: 10px;
     width: 900px;
     max-width: 80%;
-    background-color:var(--primary);
+    background-color: var(--primary);
     border-radius: 5px;
-    box-shadow: 0 0 10px 2px var(--accent);
+    box-shadow: 0 0 15px 10px var(--accent);
 }
 
 #message {
-    width: 800px;
-    max-width: 90%;
     margin: 20px auto;
     padding: 10px;
+    width: 800px;
+    max-width: 90%;
     background-color: var(--secondary);
     color: var(--text);
     border-radius: 3px;
 }
 
 #choices ul {
-    width: 800px;
     margin: 0 auto;
     justify-content: center;
+    width: 800px;
     list-style-type: none;
 }
 
 #choicesMenu li {
+    margin: 20px auto;
+    padding: 10px;
     width: 800px;
     max-width: 80%;
     display: inline-flex;
     justify-self: center;
-    margin: 20px auto;
-    padding: 10px;
     background-color: var(--tertiary);
     color: var(--text);
     border-radius: 3px;
@@ -68,6 +68,6 @@ body {
 
 #choicesMenu li:hover {
     background-color: var(--hightlight);
-    font-style: italic;
     color: var(--hover-text);
+    font-style: italic;
 }
