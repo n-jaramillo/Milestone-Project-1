@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+:root {
+    --background:#05020D;
+    --primary:#2F2A3D;
+    --secondary:#39263A;
+    --tertiary:#525638;
+    --accent:#635A7C;
+    --hightlight:#B4AC7D;
+    --text:#DEC9E0;
+    --hover-text:#595439;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background);
+}
+
+.gameContainer {
+    padding: 10px;
+    width: 900px;
+    max-width: 80%;
+    background-color:var(--primary);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px var(--accent);
+}
+
+#message {
+    width: 800px;
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: var(--secondary);
+    color: var(--text);
+    border-radius: 3px;
+}
+
+#choices ul {
+    width: 800px;
+    margin: 0 auto;
+    justify-content: center;
+    list-style-type: none;
+}
+
+#choicesMenu li {
+    width: 800px;
+    max-width: 80%;
+    display: inline-flex;
+    justify-self: center;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: var(--tertiary);
+    color: var(--text);
+    border-radius: 3px;
+}
+
+#choicesMenu li:hover {
+    background-color: var(--hightlight);
+    font-style: italic;
+    color: var(--hover-text);
+}
