@@ -17,40 +17,11 @@
     --background: #05020D;
     --primary: #2F2A3D;
     --secondary: #39263A;
-    --tertiary: #525638;
+    --tertiary: #393B26;
     --accent: #635A7C;
     --hightlight: #B4AC7D;
     --text: #DEC9E0;
-    --hover-text: #595439;
-
-    /* Text Animation Variables */
-    --typingSpeed: 3s;
-    --messageCharacters: 34;
-}
-
-/* Keyframes */
-@keyframes writeMessage {
-    to {
-        left: 100%
-    }
-}
-
-@-webkit-keyframes writeMessage {
-    to {
-        left: 100%
-    }
-}
-
-@keyframes caretBlink {
-    to {
-        background: transparent;
-    }
-}
-
-@-webkit-keyframes caretBlink {
-    to {
-        background: transparent;
-    }
+    --hover-text: #222016;
 }
 
 body {
@@ -85,39 +56,17 @@ body {
 
 #message {
     position: relative;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
+    /* width: -webkit-max-content; */
+    /* width: -moz-max-content; */
+    width: 90%;
     margin: 20px auto;
     background-color: var(--secondary);
     color: var(--text);
     border-radius: 3px;
+    text-wrap: wrap;
 }
 
-#message::before,
-#message::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-#message::before {
-    background: var(--secondary);
-    --webkit-animation: writeMessage var(--typingSpeed) steps(var(--messageCharacters)) 1s forwards;
-    animation: writeMessage var(--typingSpeed) steps(var(--messageCharacters)) 1s forwards;
-}
-
-#message::after {
-    width: 0.125em;
-    background: var(--accent);
-    -webkit-animation: writeMessage var(--typingSpeed) steps(var(--messageCharacters)) 1s forwards, caretBlink 750ms steps(var(--messageCharacters)) infinite;
-    animation: writeMessage var(--typingSpeed) steps(var(--messageCharacters)) 1s forwards, caretBlink 750ms steps(var(--messageCharacters)) infinite;
-}
-
-#choices ul {
+#choicesMenu {
     margin: 0 auto;
     justify-content: center;
     width: 800px;
@@ -127,8 +76,7 @@ body {
     transition: max-height 0.7s ease-in-out;
 }
 
-#choicesMenu li,
-.option {
+#choicesMenu li {
     margin: 20px auto;
     padding: 10px;
     width: 800px;
@@ -138,11 +86,13 @@ body {
     background-color: var(--tertiary);
     color: var(--text);
     border-radius: 3px;
+    font-style: normal;
+    transition: 1s ease-in-out;
+    transform: skewX(0deg);
 }
 
-#choicesMenu li:hover,
-.option {
+#choicesMenu li:hover {
     background-color: var(--hightlight);
     color: var(--hover-text);
-    font-style: italic;
+    transform: skewX(-10deg);
 }
