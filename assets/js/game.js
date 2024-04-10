@@ -1,4 +1,4 @@
-// Game Prompts Import
+// Game Text Import
 import { welcomeDialogue, gameAlerts, gamePrompts } from "./game-text.js"
 
 // State Tracking
@@ -8,7 +8,16 @@ let state = {}
 const messageElement = document.getElementById("message")
 const choicesElement = document.getElementById("choicesMenu")
 
-// Controls Event Listener
+// Typing Speed
+const TYPE_SPEED = 50
+
+// TypeIt Prompt Message
+const typedMessage = new TypeIt("#gameMessage", {
+    speed: TYPE_SPEED,
+    lifeLike: true
+}).go()
+
+// Document Event Listener for Game Controls
 document.addEventListener("keydown", listenForKeyPress, false)
 
 // Start Game Function
@@ -17,16 +26,26 @@ function startGame() {
     showMessage(1)
 }
 
-// TODO: update event listener to delete first message prompt and write new one
-// Show Message using Game Prompt Id
+// Show Message using Game Prompt Id and TypeIt
+// Add Choices Using Helper Function 
+// Listen for Game Controls Keypress
 function showMessage(gamePromptIndex) {
     const gamePrompt = gamePrompts.find(gamePrompt => gamePrompt.id === gamePromptIndex)
-    messageElement.innerText = gamePrompt.message
+
+    typedMessage.type(gamePrompt.message).flush()
+
+    addChoices(gamePrompt.choices)
+    
+    listenForKeyPress()
+}
+
+// Choices Menu Helper Function
+function addChoices(choices) {
     while (choicesElement.firstChild) {
         choicesElement.removeChild(choicesElement.firstChild)
     }
 
-    gamePrompt.choices.forEach(choice => {
+    choices.forEach(choice => {
         if (showOption(choice)) {
             const optionPrompt = document.createElement('li')
             optionPrompt.innerText = choice.option
@@ -36,22 +55,6 @@ function showMessage(gamePromptIndex) {
             choicesElement.appendChild(optionPrompt)
         }
     })
-    listenForKeyPress()
-}
-
-// Set Options Visibility to Visible on Enter Keypress or "Continue"
-function setVisibility() {
-    choicesElement.style.visibility = 'visible'
-    choicesElement.style.maxHeight = choicesElement.scrollHeight + "px"
-}
-
-// Event Listener to Continue When Enter Key is Pressed -- Enter keycode "13"
-function listenForKeyPress(e) {
-    let keyPress = e.keyCode
-    // alert(`${keyPress}`)
-    if (keyPress == 13) {
-        setVisibility()
-    }
 }
 
 // Show Options 
@@ -69,11 +72,25 @@ function selectOption(option) {
     showMessage(nextGamePromptId)
 }
 
+// Event Listener to Continue When Key is Pressed
+function listenForKeyPress(e) {
+    let keyPress = e.keyCode
+    // alert(`${keyPress}`)
+    // Enter Key
+    if (keyPress == 13) {
+        setVisibility()
+    }
+}
+
+// Set Options Visibility to Visible
+function setVisibility() {
+    choicesElement.style.visibility = 'visible'
+    choicesElement.style.maxHeight = choicesElement.scrollHeight + "px"
+}
+
 // Refresh Animation for Typing Message on Screen and Refresh Options Visibility
 function refreshScreen() {
-    messageElement.setAttribute('id', '')
-    void messageElement.offsetWidth;
-    messageElement.setAttribute('id', 'message')
+    typedMessage.reset().go()
     choicesElement.style.visibility = 'hidden'
     choicesElement.style.maxHeight = null
 }
