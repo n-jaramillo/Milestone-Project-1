@@ -9,12 +9,13 @@ const messageElement = document.getElementById("message")
 const choicesElement = document.getElementById("choicesMenu")
 
 // Typing Speed
-const TYPE_SPEED = 50
+const TYPE_SPEED = 1
 
 // TypeIt Prompt Message
 const typedMessage = new TypeIt("#gameMessage", {
     speed: TYPE_SPEED,
     lifeLike: true,
+    // afterStep: function (instance) { instance.pause(500) },
 }).go()
 
 // Start Game Function
@@ -29,12 +30,18 @@ function startGame() {
 function showMessage(gamePromptIndex) {
     const gamePrompt = gamePrompts.find(gamePrompt => gamePrompt.id === gamePromptIndex)
 
-    addChoices(gamePrompt.choices)
+    const messages = gamePrompt.message.split('<br /><br />')
 
+    messages.forEach(
+        m => {
+            typedMessage.type(m).pause(500).break().break()
+        }
+    )
+
+    addChoices(gamePrompt.choices)
+    
     typedMessage
-        .type(gamePrompt.message)
-        .pause(500)
-        .type(`<br /><br />> ${choicePrompt[0]} or ${choicePrompt[1].toLowerCase()}?`)
+        .type(`> ${choicePrompt[0]} or ${choicePrompt[1].toLowerCase()}?`)
         .exec(async () => {
             setTimeout(() => {
                 setVisibility()
