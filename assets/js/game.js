@@ -14,11 +14,8 @@ const TYPE_SPEED = 50
 // TypeIt Prompt Message
 const typedMessage = new TypeIt("#gameMessage", {
     speed: TYPE_SPEED,
-    lifeLike: true
+    lifeLike: true,
 }).go()
-
-// Document Event Listener for Game Controls
-document.addEventListener("keydown", listenForKeyPress, false)
 
 // Start Game Function
 function startGame() {
@@ -32,12 +29,23 @@ function startGame() {
 function showMessage(gamePromptIndex) {
     const gamePrompt = gamePrompts.find(gamePrompt => gamePrompt.id === gamePromptIndex)
 
-    typedMessage.type(gamePrompt.message).flush()
-
     addChoices(gamePrompt.choices)
-    
-    listenForKeyPress()
+
+    typedMessage
+        .type(gamePrompt.message)
+        .pause(500)
+        .type(`<br /><br />> ${choicePrompt[0]} or ${choicePrompt[1].toLowerCase()}?`)
+        .exec(async () => {
+            setTimeout(() => {
+                setVisibility()
+            }, 500)
+        })
+        .go()
+
+    typedMessage.flush()
 }
+
+let choicePrompt = []
 
 // Choices Menu Helper Function
 function addChoices(choices) {
@@ -53,8 +61,11 @@ function addChoices(choices) {
             optionPrompt.addEventListener('click', () => refreshScreen())
             optionPrompt.addEventListener('click', () => selectOption(choice))
             choicesElement.appendChild(optionPrompt)
+            choicePrompt.push(choice.option)
         }
     })
+
+    return choicePrompt
 }
 
 // Show Options 
@@ -72,16 +83,6 @@ function selectOption(option) {
     showMessage(nextGamePromptId)
 }
 
-// Event Listener to Continue When Key is Pressed
-function listenForKeyPress(e) {
-    let keyPress = e.keyCode
-    // alert(`${keyPress}`)
-    // Enter Key
-    if (keyPress == 13) {
-        setVisibility()
-    }
-}
-
 // Set Options Visibility to Visible
 function setVisibility() {
     choicesElement.style.visibility = 'visible'
@@ -90,9 +91,9 @@ function setVisibility() {
 
 // Refresh Animation for Typing Message on Screen and Refresh Options Visibility
 function refreshScreen() {
-    typedMessage.reset().go()
     choicesElement.style.visibility = 'hidden'
     choicesElement.style.maxHeight = null
+    typedMessage.reset().go()
 }
 
 startGame()
