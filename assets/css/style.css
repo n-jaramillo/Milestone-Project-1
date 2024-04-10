@@ -87,12 +87,20 @@ body {
     color: var(--text);
     border-radius: 3px;
     font-style: normal;
-    transition: 1s ease-in-out;
-    transform: skewX(0deg);
+    transition: 0.5s ease-in-out;
 }
 
 #choicesMenu li:hover {
     background-color: var(--hightlight);
     color: var(--hover-text);
-    transform: skewX(-10deg);
+}
+
+#choicesMenu li::before {
+    content:'> ';
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}
+
+#choicesMenu li:hover::before {
+    opacity: 1;
 }
