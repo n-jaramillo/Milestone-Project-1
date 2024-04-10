@@ -17,6 +17,7 @@ function startGame() {
     showMessage(1)
 }
 
+// TODO: update event listener to delete first message prompt and write new one
 // Show Message using Game Prompt Id
 function showMessage(gamePromptIndex) {
     const gamePrompt = gamePrompts.find(gamePrompt => gamePrompt.id === gamePromptIndex)

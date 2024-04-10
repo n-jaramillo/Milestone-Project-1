@@ -1,5 +1,9 @@
+// TODO: update welcome dialogue
 export const welcomeDialogue = `Welcome to the game`
 
+// TODO: add game tutorial dialogue
+
+// TODO: add more game alerts for "win" / "lose" and items acquired
 export const gameAlerts = [
     {
         id: 1,
@@ -11,6 +15,7 @@ export const gameAlerts = [
     }
 ]
 
+// TODO: update game prompts
 export const gamePrompts = [
     {
         id: 1,
