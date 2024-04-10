@@ -5,17 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <title>The Devil's Grip</title>
 </head>
 
 <body>
     <main>
         <div class="gameContainer">
-            <div id="message"></div>
+            <div class="messageContainer">
+                <p id="message">Game Message</p>
+            </div>
             <div id="choices">
                 <ul id="choicesMenu">
-                    <li id="choiceA"></li>
-                    <li id="choiceB"></li>
+                    <li id="choiceA" class="option">Option One</li>
+                    <li id="choiceB" class="option">Option Two</li>
                 </ul>
             </div>
         </div>
@@ -23,7 +28,7 @@
     <footer>
         <!-- TODO: Add Link to Text File with Resources -->
     </footer>
-    <script src="./assets/js/game.js"></script>
+    <script type="module" src="./assets/js/game.js"></script>
 </body>
 
 </html>
