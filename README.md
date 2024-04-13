@@ -5,6 +5,8 @@ Milestone Project 1: Browser Game
 
 Nikki Jaramillo
 
+[Play the Game Here](https://n-jaramillo.github.io/Milestone-Project-1/)
+
 ## Story Concept
 A web browser based choose your own adventure (CYOA) game, inspired by Devil's Grip, a patience-esque, solitare-type card game with the objective of ridding a pile of cards onto ordered stacks on the play area. Patience and solitare games are often one-player games that require patience to fully complete them without any leftover cards. Devil's Grip's game play removes the aces and scores the player based on how many unused cards remain, the lower the number the higher the winning rank. 
 
