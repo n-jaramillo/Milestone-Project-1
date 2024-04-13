@@ -48,7 +48,7 @@ Online tools and documentation utilized to build and connect branches of the sto
 "An open-source tool for telling interactive, nonlinear stories"
 
 ## Code Reference
-
+[Choose Your Own Adventure JavaScript Reference](https://www.youtube.com/watch?v=R1S_NhKkvGA&t=933s)
 
 ## Assets
 [UI Spritesheet Set](https://statoasty.itch.io/ui-assets-pack-srt)
