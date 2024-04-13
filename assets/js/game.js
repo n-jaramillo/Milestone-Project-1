@@ -1,26 +1,20 @@
 // Game Text Import
-import { welcomeDialogue, gameAlerts, gamePrompts } from "./game-text.js"
+import { gamePrompts, newLine } from "./game-text.js"
 
-// State Tracking
-let state = {}
-
-// Messages and Choices Element
-const messageElement = document.getElementById("message")
+// Choices Element
 const choicesElement = document.getElementById("choicesMenu")
 
 // Typing Speed
-const TYPE_SPEED = 1
+const TYPE_SPEED = 50
 
 // TypeIt Prompt Message
 const typedMessage = new TypeIt("#gameMessage", {
     speed: TYPE_SPEED,
     lifeLike: true,
-    // afterStep: function (instance) { instance.pause(500) },
 }).go()
 
 // Start Game Function
 function startGame() {
-    state = {}
     showMessage(1)
 }
 
@@ -30,7 +24,7 @@ function startGame() {
 function showMessage(gamePromptIndex) {
     const gamePrompt = gamePrompts.find(gamePrompt => gamePrompt.id === gamePromptIndex)
 
-    const messages = gamePrompt.message.split('<br /><br />')
+    const messages = gamePrompt.message.split(newLine)
 
     messages.forEach(
         m => {
@@ -39,20 +33,17 @@ function showMessage(gamePromptIndex) {
     )
 
     addChoices(gamePrompt.choices)
-    
+
     typedMessage
-        .type(`> ${choicePrompt[0]} or ${choicePrompt[1].toLowerCase()}?`)
         .exec(async () => {
             setTimeout(() => {
                 setVisibility()
-            }, 500)
+            }, 1000)
         })
         .go()
 
     typedMessage.flush()
 }
-
-let choicePrompt = []
 
 // Choices Menu Helper Function
 function addChoices(choices) {
@@ -61,32 +52,22 @@ function addChoices(choices) {
     }
 
     choices.forEach(choice => {
-        if (showOption(choice)) {
-            const optionPrompt = document.createElement('li')
-            optionPrompt.innerText = choice.option
-            optionPrompt.classList.add('option')
-            optionPrompt.addEventListener('click', () => refreshScreen())
-            optionPrompt.addEventListener('click', () => selectOption(choice))
-            choicesElement.appendChild(optionPrompt)
-            choicePrompt.push(choice.option)
-        }
+        const optionPrompt = document.createElement('li')
+        optionPrompt.innerText = choice.option
+        optionPrompt.classList.add('option')
+        optionPrompt.addEventListener('click', () => refreshScreen())
+        optionPrompt.addEventListener('click', () => selectOption(choice))
+        choicesElement.appendChild(optionPrompt)
     })
-
-    return choicePrompt
-}
-
-// Show Options 
-function showOption(option) {
-    return option.requiredState == null || option.requiredState(state)
 }
 
 // Select Options and Set NextId
 function selectOption(option) {
     const nextGamePromptId = option.nextId
     if (nextGamePromptId <= 0) {
+        typedMessage.reset().go()
         return startGame()
     }
-    state = Object.assign(state, option.setState)
     showMessage(nextGamePromptId)
 }
 
@@ -100,7 +81,6 @@ function setVisibility() {
 function refreshScreen() {
     choicesElement.style.visibility = 'hidden'
     choicesElement.style.maxHeight = null
-    typedMessage.reset().go()
 }
 
 startGame()
